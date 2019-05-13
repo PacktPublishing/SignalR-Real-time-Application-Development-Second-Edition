@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SignalRChat.Mobile.Chat"
+             Title="{Binding Room}">
+  <StackLayout Orientation="Vertical" Padding="8">
+
+    <StackLayout Orientation="Horizontal">
+      <Entry x:Name="room" Keyboard="Text" Placeholder="Enter message" HorizontalOptions="FillAndExpand" Text="{Binding Room, Mode=TwoWay}"/>
+      <Button Command="{Binding SendCommand}" Text="Send" HorizontalOptions="End"/>
+    </StackLayout>
+
+    <ListView ItemsSource="{Binding Messages}">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding}"/>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

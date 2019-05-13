@@ -1,0 +1,20 @@
+﻿<div ng-controller="chatRooms">
+    <select size="2" 
+            style="width:200px; height:200px;" 
+            ng-model="currentChatRoom" 
+            ng-change="selectionChanged(currentChatRoom)" 
+            ng-options="room for room in rooms"></select>
+    <div class="form-inline">
+        <div class="form-group">
+            <label for="messageTextBox" class="control-label">Chatroom</label>
+            <div class="input-group">
+                <input type="text" 
+                       class="form-control" 
+                       id="messageTextBox" 
+                       placeholder="Chatroom" 
+                       ng-model="chatRoom">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="createRoom()">Create room</button>
+        </div>
+    </div>
+</div>

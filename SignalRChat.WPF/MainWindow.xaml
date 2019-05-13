@@ -1,0 +1,30 @@
+﻿<Window x:Class="SignalRChat.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:SignalRChat.WPF"
+        xmlns:viewModels="clr-namespace:Bifrost.ViewModels;assembly=Bifrost.Client"
+        xmlns:interaction="clr-namespace:Bifrost.Interaction;assembly=Bifrost.Client"
+        Title="MainWindow" 
+        Height="400" 
+        Width="600"
+        DataContext="{viewModels:ViewModel {x:Type local:MainWindowViewModel}}">
+    <Grid Margin="8">
+        <Grid.Resources>
+            <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        </Grid.Resources>
+
+        <Grid Visibility="{Binding LoggedIn, Converter={StaticResource BooleanToVisibilityConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <local:ChatRooms Grid.Column="0"/>
+            <local:Chat Grid.Column="1"/>
+        </Grid>
+
+        <Grid Visibility="{Binding LoggedIn, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=true}">
+            <local:Login/>
+        </Grid>
+    </Grid>
+</Window>

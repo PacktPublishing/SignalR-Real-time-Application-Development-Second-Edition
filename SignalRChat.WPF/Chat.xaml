@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="SignalRChat.WPF.Chat"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModels="clr-namespace:Bifrost.ViewModels;assembly=Bifrost.Client"
+             xmlns:interaction="clr-namespace:Bifrost.Interaction;assembly=Bifrost.Client"
+             xmlns:local="clr-namespace:SignalRChat.WPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             DataContext="{viewModels:ViewModel {x:Type local:ChatViewModel}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" VerticalAlignment="Stretch" Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock>
+                <Run>Current Room : </Run>
+                <Run Text="{Binding CurrentRoom, Mode=OneWay}"/>
+                <Run>, Current State : </Run>
+                <Run Text="{Binding CurrentState, Mode=OneWay}"/>
+            </TextBlock>
+            <ListView Grid.Row="1" ItemsSource="{Binding Messages}"></ListView>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBox Grid.Column="0" x:Name="message"/>
+            <Button Grid.Column="1" 
+                    Command="{interaction:FromMethod Send}" 
+                    CommandParameter="{Binding ElementName=message, Path=Text}">Send</Button>
+        </Grid>
+    </Grid>
+</UserControl>

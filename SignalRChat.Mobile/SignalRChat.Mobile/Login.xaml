@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SignalRChat.Mobile.Login">
+  
+  
+  <StackLayout Orientation="Vertical" VerticalOptions="Start" Padding="8,32,8,8">
+
+    <Label Text="UserName"/>
+    <Entry Keyboard="Text" Placeholder="Enter username" Text="{Binding UserName, Mode=TwoWay}" />
+    <Label Text="Password"/>
+    <Entry Keyboard="Text" IsPassword="true" Placeholder="Enter password" Text="{Binding Password, Mode=TwoWay}"/>
+    
+    <Button Command="{Binding LoginCommand}" Text="Login"></Button>
+
+  </StackLayout>
+</ContentPage>
